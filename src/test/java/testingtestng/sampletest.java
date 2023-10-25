@@ -15,7 +15,7 @@ public class sampletest {
 	  WebElement src = driver.findElement(By.id("APjFqb"));
 	  src.sendKeys("Selenium Tutorial");
 	  src.submit();
-	 Assert.assertEquals(driver.getTitle(),"java tutorial - google search");
+	 Assert.assertEquals(driver.getTitle(),"selenium tutorial - google search");
 	 driver.close();
   }
 }
