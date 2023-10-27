@@ -6,8 +6,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.devtools.v115.network.model.TrustTokenOperationDone.Status;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -15,7 +17,11 @@ import org.testng.asserts.SoftAssert;
 
 public class googlepage {
 	private static final String priority = null;
+	private static final String extentTest = null;
+	private static final String Utility = null;
 	WebDriver driver;
+	private Object MediaEntityBulider;
+	
 	
 	@BeforeTest
 	public void setup(String strBrowser) {
@@ -78,8 +84,14 @@ public void Cucumbertest() {
 	 
 }
 @AfterMethod
-public void teardown() {
-	//driver.close();
+public void teardown(ITestResult result) {
+	if(ITestResult.FAILURE== result.getStatus()) {
+		extentTest.log(Status.Fail,result.getThrowable().getMessage());
+		String strpath = Utility.getScreenshotpath(driver);
+		extentTest.fail(
+				 MediaEntityBulider.createScreenCaptureFromPath(strpath).bulid());
+	}
+	driver.close();
 }
 	
 }
